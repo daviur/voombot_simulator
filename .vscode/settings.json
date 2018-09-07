@@ -1,0 +1,9 @@
+{
+    "python.pythonPath": "/home/david/.pyenv/versions/dev-3.7.0/bin/python",
+    "python.unitTest.pyTestArgs": [
+        "."
+    ],
+    "python.unitTest.unittestEnabled": false,
+    "python.unitTest.nosetestsEnabled": false,
+    "python.unitTest.pyTestEnabled": true
+}
