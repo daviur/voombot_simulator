@@ -2,7 +2,7 @@ import enum
 from collections import namedtuple
 
 
-class Coordinate:
+class Coordinates2D:
     """
     Hashable class that represents coordinates in 2D.
 
@@ -17,19 +17,16 @@ class Coordinate:
     def __add__(self, other):
         x = self.x + other.x
         y = self.y + other.y
-        return Coordinate(x, y)
+        return Coordinates2D(x, y)
 
     def __eq__(self, other):
-        return self.__hash__() == other.__hash__()
-
-    def __hash__(self):
-        return hash((self.x, self.y))
+        return self.x == other.x and self.y == other.y
 
     def __le__(self, other):
         return self == other or (self.x <= other.x and self.y <= other.y)
 
     def __str__(self):
-        return f'Coordinate({self.x}, {self.y})'
+        return f'Coordinates2D({self.x}, {self.y})'
 
     __repr__ = __str__
 
@@ -47,10 +44,10 @@ class CardinalPoint(enum.Enum):
                 counterclockwise ->
     """
     _order_ = 'N E S W'
-    N = Coordinate(0, 1)
-    E = Coordinate(1, 0)
-    S = Coordinate(0, -1)
-    W = Coordinate(-1, 0)
+    N = Coordinates2D(0, 1)
+    E = Coordinates2D(1, 0)
+    S = Coordinates2D(0, -1)
+    W = Coordinates2D(-1, 0)
 
     @classmethod
     def clockwise(cls, cardinal_point):

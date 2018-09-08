@@ -2,25 +2,49 @@
 
 import sys
 
-from navigation import CardinalPoint, Coordinate
+from navigation import CardinalPoint, Coordinates2D
 from voombot import VoomBot
+
+
+def main():
+    dims = read_stdin().split()
+    sim = VoomBotSimulator(*dims)
+
+    try:
+        while True:
+            bot_args = read_stdin().split()
+            bot = sim.add_voombot(*bot_args)
+            cmds = read_stdin().strip()
+            for c in cmds:
+                sim.execute(c, bot)
+    except (KeyboardInterrupt, EOFError):
+        for s in sim.state():
+            sys.stdout.write(f'{s[0]} {s[1]} {s[2]}\n')
+    return 0
+
+
+def read_stdin():
+    line = input()
+    while line == '':
+        line = input()
+    return line
 
 
 class VoomBotSimulator:
     """
-    Core class for the VoomBot simulator
+    Core class for the VoomBot simulator.
     """
 
     def __init__(self, x_coord, y_coord):
-        if x_coord < 0 or y_coord < 0:
+        if int(x_coord) < 0 or int(y_coord) < 0:
             raise ValueError('Dimmensions must be positive')
-        self.dims = Coordinate(x_coord, y_coord)
+        self.dims = Coordinates2D(x_coord, y_coord)
         self.bots = []
 
-    def add_bot(self, x_coord, y_coord, heading):
-        coord = Coordinate(x_coord, y_coord)
+    def add_voombot(self, x_coord, y_coord, heading):
+        coord = Coordinates2D(x_coord, y_coord)
         if not self._in_bounds(coord):
-            raise ValueError('Must be in the room')
+            raise ValueError('VoomBot must be in the room')
         self.bots.append(VoomBot(coord, CardinalPoint[heading]))
         return self.bots[-1]
 
@@ -37,7 +61,11 @@ class VoomBotSimulator:
             raise ValueError('Wrong command')
 
     def _in_bounds(self, coord):
-        return Coordinate(0, 0) <= coord <= self.dims
+        return Coordinates2D(0, 0) <= coord <= self.dims
 
     def state(self):
-        return
+        return ((b.coordinates.x, b.coordinates.y, b.heading.name) for b in self.bots)
+
+
+if __name__ == '__main__':
+    sys.exit(main())

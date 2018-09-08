@@ -1,22 +1,22 @@
 import pytest
 
-from navigation import CardinalPoint, Coordinate
+from navigation import CardinalPoint, Coordinates2D
 
 
 def test_add_coordinates():
-    assert Coordinate(2, 3) + Coordinate(-1, -3) == Coordinate(1, 0)
+    assert Coordinates2D(2, 3) + Coordinates2D(-1, -3) == Coordinates2D(1, 0)
 
 
 @pytest.mark.parametrize('coord1,coord2,expected', [
-    (Coordinate(1, 1), Coordinate(1, 1), True),
-    (Coordinate(1, 1), Coordinate(0, 0), False)
+    (Coordinates2D(1, 1), Coordinates2D(1, 1), True),
+    (Coordinates2D(1, 1), Coordinates2D(0, 0), False)
 ])
 def test_equality(coord1, coord2, expected):
     assert (coord1 == coord2) is expected
 
 
 def test_coordinates_order():
-    assert Coordinate(2, 3) <= Coordinate(5, 6)
+    assert Coordinates2D(2, 3) <= Coordinates2D(5, 6)
 
 
 @pytest.mark.parametrize('input,expected', [
@@ -37,3 +37,7 @@ def test_clockwise(input, expected):
 ])
 def test_counter_clockwise(input, expected):
     assert CardinalPoint.counter_clockwise(input) == expected
+
+
+def test_coordinates__str__():
+    assert str(Coordinates2D(4, 5)) == 'Coordinates2D(4, 5)'

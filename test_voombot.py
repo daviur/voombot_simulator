@@ -1,6 +1,6 @@
 import pytest
 
-from navigation import CardinalPoint, Coordinate
+from navigation import CardinalPoint, Coordinates2D
 from voombot import VoomBot
 
 
@@ -34,10 +34,10 @@ def test_turns_right(bot, turns, expected):
 
 
 @pytest.mark.parametrize('bot,expected', [
-    (VoomBot(heading=CardinalPoint.N), Coordinate(0, 1)),
-    (VoomBot(heading=CardinalPoint.E), Coordinate(1, 0)),
-    (VoomBot(heading=CardinalPoint.S), Coordinate(0, -1)),
-    (VoomBot(heading=CardinalPoint.W), Coordinate(-1, 0))
+    (VoomBot(heading=CardinalPoint.N), Coordinates2D(0, 1)),
+    (VoomBot(heading=CardinalPoint.E), Coordinates2D(1, 0)),
+    (VoomBot(heading=CardinalPoint.S), Coordinates2D(0, -1)),
+    (VoomBot(heading=CardinalPoint.W), Coordinates2D(-1, 0))
 ])
 def test_move_forward(bot, expected):
     bot.move_forward()
