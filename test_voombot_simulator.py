@@ -47,8 +47,8 @@ def test_in_bounds(sim, coord, expected):
 ])
 def test_execute(sim, bot, cmd, expected):
     sim.execute(cmd, bot)
-    assert bot.coordinates.x == expected[0]
-    assert bot.coordinates.y == expected[1]
+    assert bot.position.x == expected[0]
+    assert bot.position.y == expected[1]
     assert bot.heading.name == expected[2]
 
 
@@ -60,8 +60,8 @@ def test_execute_wrong_cmd(sim, bot):
 def test_move_with_collission(bot):
     sim = VoomBotSimulator(0, 0)
     sim.execute('M', bot)
-    assert bot.coordinates.x == 0
-    assert bot.coordinates.y == 0
+    assert bot.position.x == 0
+    assert bot.position.y == 0
     assert bot.heading.name == 'N'
 
 

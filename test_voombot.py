@@ -41,11 +41,11 @@ def test_turns_right(bot, turns, expected):
 ])
 def test_move_forward(bot, expected):
     bot.move_forward()
-    assert bot.coordinates == expected
+    assert bot.position == expected
 
 
 def test_revert_move(bot):
-    prev_coord = bot.coordinates
+    prev_pos = bot.position
     bot.move_forward()
     bot.revert_move()
-    assert bot.coordinates == prev_coord
+    assert bot.position == prev_pos

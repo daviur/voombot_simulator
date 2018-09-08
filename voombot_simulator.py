@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import sys
 
@@ -24,6 +24,9 @@ def main():
 
 
 def read_stdin():
+    """
+    Wrapper to ignore empty lines
+    """
     line = input()
     while line == '':
         line = input()
@@ -42,10 +45,10 @@ class VoomBotSimulator:
         self.bots = []
 
     def add_voombot(self, x_coord, y_coord, heading):
-        coord = Coordinates2D(x_coord, y_coord)
-        if not self._in_bounds(coord):
+        position = Coordinates2D(x_coord, y_coord)
+        if not self._in_bounds(position):
             raise ValueError('VoomBot must be in the room')
-        self.bots.append(VoomBot(coord, CardinalPoint[heading]))
+        self.bots.append(VoomBot(position, CardinalPoint[heading]))
         return self.bots[-1]
 
     def execute(self, cmd, bot):
@@ -55,7 +58,7 @@ class VoomBotSimulator:
             bot.turn_left()
         elif cmd == 'M':
             bot.move_forward()
-            if not self._in_bounds(bot.coordinates):
+            if not self._in_bounds(bot.position):
                 bot.revert_move()
         else:
             raise ValueError('Wrong command')
@@ -64,7 +67,7 @@ class VoomBotSimulator:
         return Coordinates2D(0, 0) <= coord <= self.dims
 
     def state(self):
-        return ((b.coordinates.x, b.coordinates.y, b.heading.name) for b in self.bots)
+        return ((b.position.x, b.position.y, b.heading.name) for b in self.bots)
 
 
 if __name__ == '__main__':

@@ -2,9 +2,9 @@ from navigation import CardinalPoint, Coordinates2D
 
 
 class VoomBot:
-    def __init__(self, coordinates=None, heading=None):
-        self.coordinates = Coordinates2D(
-            0, 0) if coordinates is None else coordinates
+    def __init__(self, position=None, heading=None):
+        self.position = Coordinates2D(
+            0, 0) if position is None else position
         self.heading = CardinalPoint.N if heading is None else heading
 
     def turn_left(self):
@@ -14,11 +14,11 @@ class VoomBot:
         self.heading = CardinalPoint.clockwise(self.heading)
 
     def move_forward(self):
-        self._previous_coordinates = self.coordinates
-        self.coordinates += self.heading.value
+        self._previous_position = self.position
+        self.position += self.heading.value
 
     def revert_move(self):
-        self.coordinates = self._previous_coordinates
+        self.position = self._previous_position
 
     def __eq__(self, other):
-        return self.coordinates == other.coordinates and self.heading == other.heading
+        return self.position == other.position and self.heading == other.heading

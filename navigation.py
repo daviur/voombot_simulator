@@ -4,7 +4,7 @@ from collections import namedtuple
 
 class Coordinates2D:
     """
-    Hashable class that represents coordinates in 2D.
+    Class that represents coordinates in 2D.
 
     Order of coordinates follows this pattern:
         coord1 <= coord2 <==> coord1.x <= coord2.x and coord1.y <= coord2.y
@@ -33,7 +33,7 @@ class Coordinates2D:
 
 class CardinalPoint(enum.Enum):
     """
-    This class represents a cardinal point (N, S, E, O).
+    This Enum clas represents the cardinal points (N, S, E, O).
     This class is a singleton. It is supposed to be used through the
     class variables North, East, South, West.
 
