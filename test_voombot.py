@@ -10,10 +10,10 @@ def bot():
 
 
 @pytest.mark.parametrize('turns,expected', [
-    (1, CardinalPoint.West),
-    (2, CardinalPoint.South),
-    (3, CardinalPoint.East),
-    (4, CardinalPoint.North)
+    (1, CardinalPoint.W),
+    (2, CardinalPoint.S),
+    (3, CardinalPoint.E),
+    (4, CardinalPoint.N)
 ])
 def test_turns_left(bot, turns, expected):
     for _ in range(turns):
@@ -22,10 +22,10 @@ def test_turns_left(bot, turns, expected):
 
 
 @pytest.mark.parametrize('turns,expected', [
-    (1, CardinalPoint.East),
-    (2, CardinalPoint.South),
-    (3, CardinalPoint.West),
-    (4, CardinalPoint.North)
+    (1, CardinalPoint.E),
+    (2, CardinalPoint.S),
+    (3, CardinalPoint.W),
+    (4, CardinalPoint.N)
 ])
 def test_turns_right(bot, turns, expected):
     for _ in range(turns):
@@ -34,10 +34,10 @@ def test_turns_right(bot, turns, expected):
 
 
 @pytest.mark.parametrize('bot,expected', [
-    (VoomBot(heading=CardinalPoint.North), Coordinate(0, 1)),
-    (VoomBot(heading=CardinalPoint.East), Coordinate(1, 0)),
-    (VoomBot(heading=CardinalPoint.South), Coordinate(0, -1)),
-    (VoomBot(heading=CardinalPoint.West), Coordinate(-1, 0))
+    (VoomBot(heading=CardinalPoint.N), Coordinate(0, 1)),
+    (VoomBot(heading=CardinalPoint.E), Coordinate(1, 0)),
+    (VoomBot(heading=CardinalPoint.S), Coordinate(0, -1)),
+    (VoomBot(heading=CardinalPoint.W), Coordinate(-1, 0))
 ])
 def test_move_forward(bot, expected):
     bot.move_forward()

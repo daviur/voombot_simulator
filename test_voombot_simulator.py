@@ -30,7 +30,7 @@ def test_in_bounds(sim, coord, expected):
     ('R', (0, 0, 'E')),
     ('M', (0, 1, 'N'))
 ])
-def test_execute_cmd(sim, bot, cmd, expected):
+def test_execute(sim, bot, cmd, expected):
     sim.execute(cmd, bot)
     assert bot.coordinates.x == expected[0]
     assert bot.coordinates.y == expected[1]
