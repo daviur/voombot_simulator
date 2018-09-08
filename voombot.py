@@ -6,6 +6,7 @@ class VoomBot:
         self.position = Coordinates2D(
             0, 0) if position is None else position
         self.heading = CardinalPoint.N if heading is None else heading
+        self._previous_position = self.position
 
     def turn_left(self):
         self.heading = CardinalPoint.counter_clockwise(self.heading)
