@@ -1,8 +1,4 @@
 .cpy
-.pytest_cache/v/cache/nodeids
-__pycache__/navigation.cpython-37.pyc
-__pycache__/test_navigation.cpython-37-PYTEST.pyc
-__pycache__/test_voombot.cpython-37-PYTEST.pyc
-__pycache__/test_voombot_simulator.cpython-37-PYTEST.pyc
-__pycache__/voombot.cpython-37.pyc
-__pycache__/voombot_simulator.cpython-37.pyc
+.pytest_cache/
+__pycache__/*
+.coverage
