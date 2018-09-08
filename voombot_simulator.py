@@ -35,7 +35,9 @@ def read_stdin():
 
 class VoomBotSimulator:
     """
-    Core class for the VoomBot simulator.
+    The main core class of the simulator is the VoomBotSimulator class. 
+    This class allows to add VoomBots to the simulation, receive the 
+    commands destinened to the bots, and enforces the room dimensions.
     """
 
     def __init__(self, x_coord, y_coord):
