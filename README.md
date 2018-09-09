@@ -4,7 +4,7 @@
 
 * Python (3.7.0)
 
-### For UnitTests
+### For Unit Tests
 
 * pytest (3.7.3)
 * pytest-cov (2.6.0)
@@ -12,7 +12,7 @@
 
 ## Input format
 
-Examle:
+Example:
 
     5 5
     1 2 N
@@ -25,9 +25,9 @@ Examle:
 
 For easy testing, VoomBot Simulator can read from _stdin_ and output to _stdout_.
 
-     cat test | python voombot_simulator.py
+    cat test | python voombot_simulator.py
 
-## Run UnitTests
+## Run Unit Tests
 
     pytest --cov-report term-missing --cov=.
 
@@ -35,19 +35,23 @@ For easy testing, VoomBot Simulator can read from _stdin_ and output to _stdout_
 
 ### VoomBotSimulator
 
-The main core class of the simulator is the VoomBotSimulator class. This class allows to add VoomBots to the simulation, receive the commands destinened to the bots, and enforces the room dimensions.
+The main core class of the simulator is the VoomBotSimulator class. This class allows to add VoomBots to the simulation, receive the commands destined to the bots, and enforces the room dimensions.
 
-#### Assumtions
+#### Assumptions
 
 * The VoomBots do not collide with each other.
+* Following Agent-based simulation techniques, collision detection (physics rules) of VoomBots (agents) with the walls (environment) is enforced by the VoomBotSimultator class.
+* Controlling the VoomBots should be done using the VoomBotSimulator class to avoid breaking collision rules.
 
 ### VoomBot
 
-This class represents a VoomBot. A VoomBot can turn left, right, move one step forward, and revert a previuos step.
+This class represents a VoomBot. A VoomBot can turn left, right, move one step forward, and revert a previous step.
 
 ### CardinalPoint
 
-This Enum clas represents the cardinal points (N, S, E, O). This class is a singleton. It is supposed to be used through the class variables North, East, South, West.
+This Enum class represents the cardinal points (N, S, E, O). This class is a singleton. It is supposed to be used through the class variables North, East, South, West.
+
+The clockwise and counter_clockwise class methods can be used to get the next CardinalPoint given the order depicted in the next diagram:
 
         clockwise →
             N
@@ -57,6 +61,6 @@ This Enum clas represents the cardinal points (N, S, E, O). This class is a sing
 
 ### Coordinates2D
 
-Class that represents coordinates in 2D. Order of coordinates follows this pattern:
+This class that represents coordinates in 2D plane. Order of coordinates follows this pattern:
 
-        coord1 <= coord2 <==> coord1.x <= coord2.x and coord1.y <= coord2.y
+    coord1 <= coord2 <==> coord1.x <= coord2.x and coord1.y <= coord2.y
