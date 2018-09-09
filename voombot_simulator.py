@@ -35,41 +35,48 @@ def read_stdin():
 
 class VoomBotSimulator:
     """
-    The main core class of the simulator is the VoomBotSimulator class. 
-    This class allows to add VoomBots to the simulation, receive the 
-    commands destinened to the bots, and enforces the room dimensions.
+    The main core class of the simulator is the VoomBotSimulator class.
+    This class allows to add VoomBots to the simulation, receive the
+    commands destined to the bots, and enforces the room dimensions.
     """
 
     def __init__(self, x_coord, y_coord):
         if int(x_coord) < 0 or int(y_coord) < 0:
-            raise ValueError('Dimmensions must be positive')
+            raise ValueError('Dimensions must be positive')
         self.dims = Coordinates2D(x_coord, y_coord)
-        self.bots = []
+        self.bots = {}
 
     def add_voombot(self, x_coord, y_coord, heading):
         position = Coordinates2D(x_coord, y_coord)
         if not self._in_bounds(position):
             raise ValueError('VoomBot must be in the room')
-        self.bots.append(VoomBot(position, CardinalPoint[heading]))
-        return self.bots[-1]
+        bot = VoomBot(position, CardinalPoint[heading])
+        # id(bot) is inmutable, unique and last the life-time of the bot
+        self.bots[id(bot)] = bot
+        return bot
 
     def execute(self, cmd, bot):
+        self._check_args(bot, cmd)
         if cmd == 'R':
             bot.turn_right()
         elif cmd == 'L':
             bot.turn_left()
-        elif cmd == 'M':
+        else:  # cmd == 'M':
             bot.move_forward()
             if not self._in_bounds(bot.position):
                 bot.revert_move()
-        else:
+
+    def _check_args(self, ref_bot, cmd):
+        if id(ref_bot) not in self.bots:
+            raise ValueError('Bot is not part of the simulation')
+        if cmd not in ('R', 'L', 'M'):
             raise ValueError('Wrong command')
 
     def _in_bounds(self, coord):
         return Coordinates2D(0, 0) <= coord <= self.dims
 
     def state(self):
-        return ((b.position.x, b.position.y, b.heading.name) for b in self.bots)
+        return ((b.position.x, b.position.y, b.heading.name) for b in self.bots.values())
 
 
 if __name__ == '__main__':

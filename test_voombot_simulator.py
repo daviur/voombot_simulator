@@ -15,14 +15,8 @@ def sim():
     return VoomBotSimulator(5, 5)
 
 
-@pytest.mark.parametrize('args,expected', [
-    ((0, 0, 'N'), True),
-    ((1, 0, 'N'), False),
-    ((0, 1, 'N'), False),
-    ((0, 0, 'S'), False),
-])
-def test_add_bot(bot, sim, args, expected):
-    assert (sim.add_voombot(*args) == bot) == expected
+def test_add_bot(bot, sim):
+    assert (sim.add_voombot(0, 0, 'N') == bot) == True
 
 
 def test_add_boot_out_of_room(sim):
@@ -45,11 +39,17 @@ def test_in_bounds(sim, coord, expected):
     ('R', (0, 0, 'E')),
     ('M', (0, 1, 'N'))
 ])
-def test_execute(sim, bot, cmd, expected):
+def test_execute(sim, cmd, expected):
+    bot = sim.add_voombot(0, 0, 'N')
     sim.execute(cmd, bot)
     assert bot.position.x == expected[0]
     assert bot.position.y == expected[1]
     assert bot.heading.name == expected[2]
+
+
+def test_execute_on_wrong_bot(sim, bot):
+    with pytest.raises(ValueError):
+        sim.execute('N', bot)
 
 
 def test_execute_wrong_cmd(sim, bot):
@@ -57,11 +57,12 @@ def test_execute_wrong_cmd(sim, bot):
         sim.execute('bad_cmd', bot)
 
 
-def test_move_with_collission(bot):
-    sim = VoomBotSimulator(0, 0)
-    sim.execute('M', bot)
+def test_move_with_collission(sim):
+    bot = sim.add_voombot(0, 0, 'N')
+    for _ in range(10):
+        sim.execute('M', bot)
     assert bot.position.x == 0
-    assert bot.position.y == 0
+    assert bot.position.y == 5
     assert bot.heading.name == 'N'
 
 
