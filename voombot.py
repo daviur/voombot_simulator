@@ -2,6 +2,11 @@ from navigation import CardinalPoint, Coordinates2D
 
 
 class VoomBot:
+    """
+    This class represents a VoomBot. A VoomBot can turn left, right, 
+    move one step forward, and revert a previous step.
+    """
+
     def __init__(self, position=None, heading=None):
         self.position = Coordinates2D(
             0, 0) if position is None else position
