@@ -11,6 +11,9 @@ name = "pypi"
 pylint = "*"
 tox = "*"
 sphinx = "*"
+pytest = "*"
+pytest-cov = "*"
+coverage = "*"
 
 [requires]
 python_version = "3.7"
