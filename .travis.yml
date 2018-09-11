@@ -11,9 +11,9 @@ install:
   - pip install --upgrade setuptools pip
   - pip install pipenv
   - pipenv install --dev
-  - pipenv run pip install tox-travis
+  - pipenv run pip install tox-travis codecov
 script:
   - pipenv run tox
 after_success: 
-  - coverage combine 
-  - codecov
+  - coverage combine && codecov
+  
