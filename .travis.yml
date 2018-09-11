@@ -4,29 +4,10 @@
 
 sudo: false
 language: python
-virtualenv:
-  system_site_packages: true
-matrix:
-  include:
-    - python: 3.7
-      env: DISTRIB="ubuntu" TOX_PYTHON_VERSION="py37" COVERAGE="true"
-    - env: DISTRIB="conda" PYTHON_VERSION="3.6" COVERAGE="false"
+python:
+  - "3.6"
+  - "3.7"
 install:
-  - source tests/travis_install.sh
-  - pip install -r requirements.txt
-  # ^  DEPRECATION WARNING:
-  # The automatic creation of a `requirements.txt` file is deprecated.
-  # See `Dependency Management` in the docs for other options.
-before_script:
-  - git config --global user.email "david.urbina@acm.org"
-  - git config --global user.name "David I Urbina"
+  - pip install tox-travis
 script:
   - tox
-after_success:
-  - if [[ "$COVERAGE" == "true" ]]; then coveralls || echo "failed"; fi
-after_script:
-  - travis-cleanup
-cache:
-  pip: true
-  directories:
-    - $HOME/miniconda
