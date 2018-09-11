@@ -16,7 +16,7 @@ def sim():
 
 
 def test_add_bot(bot, sim):
-    assert (sim.add_voombot(0, 0, 'N') == bot) == True
+    assert (sim.add_voombot(0, 0, 'N') == bot) is True
 
 
 def test_add_boot_out_of_room(sim):
@@ -31,7 +31,7 @@ def test_add_boot_out_of_room(sim):
     (Coordinates2D(5, 5), True)
 ])
 def test_in_bounds(sim, coord, expected):
-    assert sim._in_bounds(coord) == expected
+    assert sim._in_bounds(coord) is expected
 
 
 @pytest.mark.parametrize('cmd,expected', [
