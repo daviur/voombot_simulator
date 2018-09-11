@@ -1,16 +1,28 @@
-# VoomBot Simulator
+=================
+VoomBot Simulator
+=================
 
-## Requirements
+
+A VoomBot simulator...
+
+
+Description
+===========
+
+Requirements
+------------
 
 * Python (3.7.0)
 
-### For Unit Tests
+For Unit Tests
+--------------
 
 * pytest (3.7.3)
 * pytest-cov (2.6.0)
 * coverage (4.5.1)
 
-## Input format
+Input format
+------------
 
 Example:
 
@@ -21,33 +33,39 @@ Example:
     MMRMMRMRRM
     ...
 
-## Run
+Run
+---
 
 For easy testing, VoomBot Simulator can read from _stdin_ and output to _stdout_.
 
     cat test | python voombot_simulator.py
 
-## Run Unit Tests
+Run Unit Tests
+--------------
 
     pytest --cov-report term-missing --cov=.
 
-## Implementation Details
+Implementation Details
+======================
 
-### VoomBotSimulator
+VoomBotSimulator
+----------------
 
 The main core class of the simulator is the VoomBotSimulator class. This class allows to add VoomBots to the simulation, receive the commands destined to the bots, and enforces the room dimensions.
 
-#### Assumptions
+Assumptions:
 
 * The VoomBots do not collide with each other.
 * Following Agent-based simulation techniques, collision detection (physics rules) of VoomBots (agents) with the walls (environment) is enforced by the VoomBotSimultator class.
 * Controlling the VoomBots should be done using the VoomBotSimulator class to avoid breaking collision rules.
 
-### VoomBot
+VoomBot
+-------
 
 This class represents a VoomBot. A VoomBot can turn left, right, move one step forward, and revert a previous step.
 
-### CardinalPoint
+CardinalPoint
+-------------
 
 This Enum class represents the cardinal points (N, S, E, O). This class is a singleton. It is supposed to be used through the class variables North, East, South, West.
 
@@ -59,8 +77,16 @@ The clockwise and counter_clockwise class methods can be used to get the next Ca
             S
     counter clockwise →
 
-### Coordinates2D
+Coordinates2D
+-------------
 
 This class that represents coordinates in 2D plane. Order of coordinates follows this pattern:
 
     coord1 <= coord2 <==> coord1.x <= coord2.x and coord1.y <= coord2.y
+
+
+Note
+====
+
+This project has been set up using PyScaffold 3.1. For details and usage
+information on PyScaffold see https://pyscaffold.org/.
