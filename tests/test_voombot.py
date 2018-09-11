@@ -1,7 +1,7 @@
 import pytest
 
-from navigation import CardinalPoint, Coordinates2D
-from voombot import VoomBot
+from voombot_simulator.navigation import CardinalPoint, Coordinates2D
+from voombot_simulator.voombot import VoomBot
 
 
 @pytest.fixture

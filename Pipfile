@@ -4,10 +4,13 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+"e1839a8" = {editable = true, path = "."}
 
 [dev-packages]
 "autopep8" = "*"
 pylint = "*"
+tox = "*"
+sphinx = "*"
 
 [requires]
 python_version = "3.7"

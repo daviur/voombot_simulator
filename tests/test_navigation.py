@@ -1,6 +1,6 @@
 import pytest
 
-from navigation import CardinalPoint, Coordinates2D
+from voombot_simulator.navigation import CardinalPoint, Coordinates2D
 
 
 def test_add_coordinates():

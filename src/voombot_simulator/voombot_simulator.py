@@ -2,8 +2,13 @@
 
 import sys
 
-from navigation import CardinalPoint, Coordinates2D
-from voombot import VoomBot
+from voombot_simulator import __version__
+from voombot_simulator.navigation import CardinalPoint, Coordinates2D
+from voombot_simulator.voombot import VoomBot
+
+__author__ = "David I Urbina"
+__copyright__ = "David I Urbina"
+__license__ = "mit"
 
 
 def main():
