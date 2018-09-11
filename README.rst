@@ -2,9 +2,10 @@
 VoomBot Simulator
 =================
 
+.. image:: https://www.travis-ci.com/daviur/voombot_simulator.svg?branch=master
+   :target: https://www.travis-ci.com/daviur/voombot_simulator
 
 A VoomBot simulator...
-
 
 Description
 ===========
