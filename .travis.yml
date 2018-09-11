@@ -6,10 +6,14 @@ sudo: false
 language: python
 python:
   - "3.6"
+  - "3.7-dev"
 install:
   - pip install --upgrade setuptools pip
   - pip install pipenv
   - pipenv install --dev
-  - pipenv install --dev tox-travis
+  #- pipenv run pip install tox-travis
 script:
   - pipenv run tox
+after_success: 
+  - coverage combine 
+  - codecov
