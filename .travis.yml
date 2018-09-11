@@ -15,5 +15,5 @@ install:
 script:
   - pipenv run tox
 after_success: 
-  - coverage combine && codecov
-  
+  - pipenv run coverage combine
+  - pipenv run codecov
