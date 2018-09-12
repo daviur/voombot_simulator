@@ -48,11 +48,11 @@ class VoomBotSimulator:
     def __init__(self, x_coord, y_coord):
         if int(x_coord) < 0 or int(y_coord) < 0:
             raise ValueError('Dimensions must be positive')
-        self.dims = Coordinates2D(x_coord, y_coord)
+        self.dims = Coordinates2D(int(x_coord), int(y_coord))
         self.bots = {}
 
     def add_voombot(self, x_coord, y_coord, heading):
-        position = Coordinates2D(x_coord, y_coord)
+        position = Coordinates2D(int(x_coord), int(y_coord))
         if not self._in_bounds(position):
             raise ValueError('VoomBot must be in the room')
         bot = VoomBot(position, CardinalPoint[heading])

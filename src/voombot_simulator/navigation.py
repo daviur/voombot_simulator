@@ -1,34 +1,30 @@
 import enum
-from collections import namedtuple
+
+from dataclasses import dataclass
 
 
+@dataclass
 class Coordinates2D:
     """
-    Class that represents coordinates in 2D.
+    Dataclass that represents coordinates in 2D.
 
     Order of coordinates follows this pattern:
         coord1 <= coord2 <==> coord1.x <= coord2.x and coord1.y <= coord2.y
     """
-
-    def __init__(self, x_coord, y_coord):
-        self.x = int(x_coord)
-        self.y = int(y_coord)
+    x: int
+    y: int
 
     def __add__(self, other):
+        if other.__class__ is not self.__class__:
+            return NotImplemented
         x = self.x + other.x
         y = self.y + other.y
         return Coordinates2D(x, y)
 
-    def __eq__(self, other):
-        return self.x == other.x and self.y == other.y
-
     def __le__(self, other):
+        if other.__class__ is not self.__class__:
+            return NotImplemented
         return self == other or (self.x <= other.x and self.y <= other.y)
-
-    def __str__(self):
-        return f'Coordinates2D({self.x}, {self.y})'
-
-    __repr__ = __str__
 
 
 class CardinalPoint(enum.Enum):

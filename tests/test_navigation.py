@@ -37,7 +37,3 @@ def test_clockwise(input, expected):
 ])
 def test_counter_clockwise(input, expected):
     assert CardinalPoint.counter_clockwise(input) == expected
-
-
-def test_coordinates__str__():
-    assert str(Coordinates2D(4, 5)) == 'Coordinates2D(4, 5)'
