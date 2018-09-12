@@ -5,6 +5,10 @@ VoomBot Simulator
 .. image:: https://www.travis-ci.com/daviur/voombot_simulator.svg?token=xq7pNp4zifJ5eiEtjRnL&branch=master
    :target: https://www.travis-ci.com/daviur/voombot_simulator
 
+.. image:: https://codecov.io/gh/daviur/voombot_simulator/branch/master/graph/badge.svg?token=Zdqdnoa4yC
+  :target: https://codecov.io/gh/daviur/voombot_simulator
+
+
 A VoomBot simulator...
 
 Description
